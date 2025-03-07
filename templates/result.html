@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather in {{ weather.city }}</h1>
+        <div class="current-weather">
+            <img src="https://openweathermap.org/img/wn/{{ weather.icon }}.png" alt="Weather Icon">
+            <p>{{ weather.temperature }}°C - {{ weather.description }}</p>
+            <p>Humidity: {{ weather.humidity }}%</p>
+            <p>Wind Speed: {{ weather.wind_speed }} m/s</p>
+        </div>
+
+        <h2>5-Day Forecast</h2>
+        <div class="forecast-container">
+            {% for day in forecast %}
+                <div class="forecast-item">
+                    <p>{{ day.date }}</p>
+                    <img src="https://openweathermap.org/img/wn/{{ day.icon }}.png" alt="Weather Icon">
+                    <p>{{ day.temperature }}°C - {{ day.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="/">Search Again</a>
+    </div>
+</body>
+</html>
