@@ -27,6 +27,17 @@
             {% endfor %}
         </div>
 
+        <h2>Explore {{ weather.city }}</h2>
+        <div class="youtube-container">
+            {% for video in videos %}
+                <div class="youtube-video">
+                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                    <p>{{ video.title }}</p>
+                    <a href="https://www.youtube.com/watch?v={{ video.videoId }}" target="_blank">Watch</a>
+                </div>
+            {% endfor %}
+        </div>
+
         <a href="/">Search Again</a>
     </div>
 </body>

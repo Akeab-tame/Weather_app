@@ -76,11 +76,12 @@ def get_weather():
     youtube_response = requests.get(YOUTUBE_SEARCH_URL, params=youtube_params).json()
     videos = []
     for item in youtube_response.get('items', []):
-        videos.append({
-            'title': item['snippet']['title'],
-            'videoId': item['id']['videoId'],
-            'thumbnail': item['snippet']['thumbnails']['default']['url']
-        })
+        if 'videoId' in item['id']:
+            videos.append({
+                'title': item['snippet']['title'],
+                'videoId': item['id']['videoId'],
+                'thumbnail': item['snippet']['thumbnails']['medium']['url']
+            })
     
     return render_template('result.html', weather=weather_data, forecast=forecast_data, videos=videos)
 
